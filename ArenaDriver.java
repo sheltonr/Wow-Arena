@@ -87,7 +87,7 @@ public class ArenaDriver {
 			case 3:	curr = "Hunter";		break;
 			case 4:	curr = "Rogue";			break;
 			case 5:	curr = "Priest";		break;
-			case 6:	curr = "Death Knight";	break;
+			case 6:	curr = "Death Knight";		break;
 			case 7: curr = "Shaman";		break;
 			case 8:	curr = "Mage";			break;
 			case 9:	curr = "Warlock";		break;
