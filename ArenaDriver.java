@@ -2,14 +2,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Collection;
-import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonStreamParser;
 
 /**
  * 
@@ -27,7 +24,7 @@ import com.google.gson.JsonStreamParser;
 
 public class ArenaDriver {
 	public static void main(String[] args) throws Exception{
-		String currenturl = "http://us.battle.net/api/wow/pvp/arena/nightfall/3v3?size=2";
+		String currenturl = "http://us.battle.net/api/wow/pvp/arena/nightfall/3v3?size=25";
 		ArenaTeam currentTeam = new ArenaTeam();
 		try {
 			URL url = new URL(currenturl);
@@ -44,7 +41,7 @@ public class ArenaDriver {
 			//turn object into array, seperates the teams into 2 different things.
 			JsonArray jArray = jsonObject.getAsJsonArray("arenateam");
 			for (int i = 0; i < jArray.size();i++) {
-				System.out.println("New Team:" + jArray.get(i));
+				System.out.println("Ranking: " + i +" "+ jArray.get(i));
 			}
 						
 		}catch(Exception e) {
