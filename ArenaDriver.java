@@ -24,7 +24,27 @@ import com.google.gson.JsonParser;
 
 public class ArenaDriver {
 	public static void main(String[] args) throws Exception{
-		String currenturl = "http://us.battle.net/api/wow/pvp/arena/nightfall/3v3?size=19";
+		String baseurl = "http://us.battle.net/api/wow/pvp/arena/";
+		
+		String currentBg = new String();
+		int listofItems = 0;
+		switch(listofItems) {
+		case 0: currentBg = "bloodlust"; break;
+		case 1: currentBg = "cyclone"; break;
+		case 2: currentBg =  "emberstorm"; break;
+		case 3: currentBg = "nightfall"; break;
+		case 4: currentBg = "rampage"; break;
+		case 5: currentBg = "reckoning"; break;
+		case 6: currentBg = "retaliation"; break;
+		case 7: currentBg = "ruin"; break;
+		case 8: currentBg = "shadowburn"; break;
+		case 9: currentBg = "stormstrike"; break;
+		case 10: currentBg = "vengeance"; break;
+		case 11: currentBg = "vindication"; break;
+		case 12: currentBg = "whirlwind"; break;
+		default: currentBg = "error"; break;
+		}
+		String currenturl = baseurl + currentBg + "/3v3?size=5";
 		try {
 			URL url = new URL(currenturl);
 			BufferedReader r = new BufferedReader(new InputStreamReader(
@@ -59,20 +79,15 @@ public class ArenaDriver {
 					JsonObject currentMember = memberArray.get(j).getAsJsonObject();
 					System.out.print("Current Player: " + currentMember.get("character").getAsJsonObject().get("name").toString() + "  "+
 						"Spec: " + getClass(currentMember.get("character").getAsJsonObject().get("class").toString()) + "\n");
-				}
-				
+				}	
 			}
-			
-						
+							
 		}catch(Exception e) {
 			System.out.println("error" + e);
 		}
 	}
 
-/**
-*
-*Not currently used.
-*/
+
 	class ArenaTeam {
 		String player1 = new String();
 		String player2 = new String();
