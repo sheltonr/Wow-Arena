@@ -31,7 +31,7 @@ public class ArenaDriver {
 		//Appropriate usage: Loop from 0-12 (13 bgs)
 		String currentBg = bg.getBg(0);
 		
-		String currenturl = baseurl + currentBg + "/3v3?size=5";
+		String currenturl = baseurl + currentBg + "/3v3?size=30";
 		try {
 			URL url = new URL(currenturl);
 			BufferedReader buffreader = new BufferedReader(new InputStreamReader(
@@ -65,8 +65,10 @@ public class ArenaDriver {
 				for (int j = 0; j < memberArray.size(); j++) {
 					JsonObject currentMember = memberArray.get(j).getAsJsonObject();
 					System.out.print("Current Player: " + currentMember.get("character").getAsJsonObject().get("name").toString() + "  "+
-						"Spec: " + getClass(currentMember.get("character").getAsJsonObject().get("class").getAsInt()) + "\n");
-				}	
+						"Class: " + getClass(currentMember.get("character").getAsJsonObject().get("class").getAsInt()) + " Race: "
+						+ getRace(currentMember.get("character").getAsJsonObject().get("race").getAsInt()) + "\n");
+				}
+				System.out.println();
 			}				
 		}catch(Exception e) {
 			System.out.println("error" + e);
@@ -97,5 +99,35 @@ public class ArenaDriver {
 		}
 		return curr;
 	
+	}
+	
+	/**
+	 * Returns string with race
+	 * Use with currentMember.get("character").getAsJsonObject().get("race").getAsInt()
+	 * Racelist from http://us.battle.net/api/wow/data/character/races
+	 * @param currentClass
+	 * @return
+	 */
+	public static String getRace(int currentClass) {
+		String curr = new String();
+		switch (currentClass) {
+			case 1:	curr = "Human";		break;
+			case 2:	curr = "Orc";		break;
+			case 3:	curr = "Dwarf";		break;
+			case 4:	curr = "Night Elf";	break;
+			case 5:	curr = "Forsaken";	break;
+			case 6:	curr = "Tauren";	break;
+			case 7: curr = "Gnome";		break;
+			case 8:	curr = "Troll";		break;
+			case 9:	curr = "Goblin";	break;
+			case 10:curr = "Blood Elf";	break;
+			case 11:curr = "Draenei";	break; //Female
+			case 22:curr = "Worgen";	break;
+			case 24:curr = "Pandaren";	break;	//Neutral
+			case 25:curr = "Pandaren";	break;	//Alliance
+			case 26:curr = "Pandaren";	break;	//Horde
+			default:curr = "Error";		break;
+		}
+		return curr;
 	}
 }
