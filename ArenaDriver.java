@@ -25,32 +25,19 @@ import com.google.gson.JsonParser;
 public class ArenaDriver {
 	public static void main(String[] args) throws Exception{
 		String baseurl = "http://us.battle.net/api/wow/pvp/arena/";
+		Battlegroups bg = new Battlegroups();
 		
-		String currentBg = new String();
-		int listofItems = 0;
-		switch(listofItems) {
-		case 0: currentBg = "bloodlust"; break;
-		case 1: currentBg = "cyclone"; break;
-		case 2: currentBg =  "emberstorm"; break;
-		case 3: currentBg = "nightfall"; break;
-		case 4: currentBg = "rampage"; break;
-		case 5: currentBg = "reckoning"; break;
-		case 6: currentBg = "retaliation"; break;
-		case 7: currentBg = "ruin"; break;
-		case 8: currentBg = "shadowburn"; break;
-		case 9: currentBg = "stormstrike"; break;
-		case 10: currentBg = "vengeance"; break;
-		case 11: currentBg = "vindication"; break;
-		case 12: currentBg = "whirlwind"; break;
-		default: currentBg = "error"; break;
-		}
+		//Use this to iterate through bgs
+		//Appropriate usage: Loop from 0-12 (13 bgs)
+		String currentBg = bg.getBg(0);
+		
 		String currenturl = baseurl + currentBg + "/3v3?size=5";
 		try {
 			URL url = new URL(currenturl);
-			BufferedReader r = new BufferedReader(new InputStreamReader(
+			BufferedReader buffreader = new BufferedReader(new InputStreamReader(
 			    ((HttpURLConnection) url.openConnection()).getInputStream()));
 			JsonParser jparse = new JsonParser();
-			JsonElement jsonElement =  jparse.parse(r);
+			JsonElement jsonElement =  jparse.parse(buffreader);
 			
 			//Turn the element into a json object
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -73,46 +60,40 @@ public class ArenaDriver {
 				System.out.println("Rating: " + currentObj.get("rating"));
 				
 				//Get the members
-				JsonElement members = currentObj.get("members");
-				JsonArray memberArray = members.getAsJsonArray();
+				JsonElement outerMembers = currentObj.get("members");
+				JsonArray memberArray = outerMembers.getAsJsonArray();
 				for (int j = 0; j < memberArray.size(); j++) {
 					JsonObject currentMember = memberArray.get(j).getAsJsonObject();
 					System.out.print("Current Player: " + currentMember.get("character").getAsJsonObject().get("name").toString() + "  "+
-						"Spec: " + getClass(currentMember.get("character").getAsJsonObject().get("class").toString()) + "\n");
+						"Spec: " + getClass(currentMember.get("character").getAsJsonObject().get("class").getAsInt()) + "\n");
 				}	
-			}
-							
+			}				
 		}catch(Exception e) {
 			System.out.println("error" + e);
 		}
 	}
-
-
-	class ArenaTeam {
-		String player1 = new String();
-		String player2 = new String();
-		String player3 = new String();
-		String player4 = new String();
-		String player5 = new String();
-		
-		public ArenaTeam () {}
-	}
 	
-	public static String getClass(String currentClass) {
+	/**
+	 * Returns classname.
+	 * Use with currentMember.get("character").getAsJsonObject().get("class").getAsInt()
+	 * @param currentClass
+	 * @return
+	 */
+	public static String getClass(int currentClass) {
 		String curr = new String();
-		switch (Integer.parseInt(currentClass)) {
-		case 1:curr = "Warrior"; break;
-		case 2:curr = "Paladin"; break;
-		case 3:curr = "Hunter"; break;
-		case 4:curr = "Rogue"; break;
-		case 5:curr = "Priest"; break;
-		case 6:curr = "Death Knight"; break;
-		case 7: curr = "Shaman"; break;
-		case 8:	curr = "Mage"; break;
-		case 9:curr = "Warlock"; break;
-		case 10:curr = "Monk"; break;
-		case 11:curr = "Druid"; break;
-		default: curr = "Error"; break;
+		switch (currentClass) {
+			case 1:	curr = "Warrior";		break;
+			case 2:	curr = "Paladin";		break;
+			case 3:	curr = "Hunter";		break;
+			case 4:	curr = "Rogue";			break;
+			case 5:	curr = "Priest";		break;
+			case 6:	curr = "Death Knight";	break;
+			case 7: curr = "Shaman";		break;
+			case 8:	curr = "Mage";			break;
+			case 9:	curr = "Warlock";		break;
+			case 10:curr = "Monk";			break;
+			case 11:curr = "Druid";			break;
+			default:curr = "Error";			break;
 		}
 		return curr;
 	

@@ -8,7 +8,7 @@ public class WowApiDriver {
 
 	public static void readInput() {
 		try {
-			URL myUrl = new URL("http://us.battle.net/api/wow/pvp/arena/ruin/2v2?size=3");
+			URL myUrl = new URL("http://us.battle.net/api/wow/pvp/arena/nightfall/3v3?size=3");
 			BufferedReader in =  new BufferedReader(new InputStreamReader(myUrl.openStream()));
 			String inputLine;
 			while((inputLine = in.readLine()) != null) {
