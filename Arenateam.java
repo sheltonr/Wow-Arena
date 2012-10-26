@@ -1,20 +1,40 @@
+package jsontocsv;
+
+import com.google.gson.JsonObject;
+
 /**
- * INCOMPLETE AT THIS TIME, DO NOT USE
- * Used to store information for each team.  Creating a separate class in case we want to create an array of Arenateams to run comparisons
- * @author Michael Terada
- * @date 10/13/2012
+ * An arenateam schema. Note that because we're only writing out to CSV, where
+ * everything is technically a string, we can do the columnData hack that we
+ * do. To add/remove attributes, just edit columnNames!
+ * @author William
  */
-
-
 public class Arenateam {
-	String player1 = new String();
-	String player2 = new String();
-	String player3 = new String();
-	String player4 = new String();
-	String player5 = new String();
-	
-	public Arenateam (){
+    
+    public String[] columnNames = {
+        "realm", "ranking", "rating", "teamsize", "name",
+        "gamesPlayed", "gamesWon", "gamesLost",
+        "sessionGamesPlayed", "sessionGamesWon", "sessionGamesLost",
+        "lastSessionRanking", "side", "currentWeekRanking"
+    };
+    
+    public String[] columnData = new String[columnNames.length];
 
-		
-	}
+    public final String getElement(JsonObject obj, String element) {
+        return obj.has(element) ? obj.get(element).getAsString() : "null";
+    }
+    
+    public Arenateam(JsonObject obj) {
+        for(int i = 0; i < columnNames.length; i++)
+            columnData[i] = getElement(obj, columnNames[i]);
+    }
+    
+    public String getTeamString() {
+        String ret = "";
+        for(int i = 0; i < columnData.length; i++) {
+            ret += columnData[i];
+            if(i != (columnData.length - 1))
+                ret += ",";
+        }
+        return ret;
+    }
 }
