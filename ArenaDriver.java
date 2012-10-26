@@ -3,6 +3,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import jsontocsv.Battlegroups;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -89,7 +91,7 @@ public class ArenaDriver {
 			case 3:	curr = "Hunter";		break;
 			case 4:	curr = "Rogue";			break;
 			case 5:	curr = "Priest";		break;
-			case 6:	curr = "Death Knight";		break;
+			case 6:	curr = "Death Knight";	break;
 			case 7: curr = "Shaman";		break;
 			case 8:	curr = "Mage";			break;
 			case 9:	curr = "Warlock";		break;

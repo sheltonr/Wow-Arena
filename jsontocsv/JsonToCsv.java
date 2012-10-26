@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+
 public class JsonToCsv {
     public String baseurl = "http://us.battle.net/api/wow/pvp/arena/";
     public Battlegroups bg;
