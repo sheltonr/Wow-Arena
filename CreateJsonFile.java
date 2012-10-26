@@ -19,10 +19,7 @@ import com.google.gson.stream.JsonReader;
  * 
  * @author Michael Terada
  * 
- * Base reader for wow api
- * Understanding the document format: http://www.json.org/
- * Object (denoted by {}) ArenaTeam contains an array (the []) of values which contains objects {} which contains name:value separated by ,
- * For 1 item, this does not contain children
+ * Simple thing to dl and create <battlegroup>.json files
  *
  */
 
