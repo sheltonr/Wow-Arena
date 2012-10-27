@@ -109,7 +109,9 @@ public class JsonToCsv {
 
     public static void main(String[] args) {
         JsonToCsv jtc = new JsonToCsv();
-        jtc.loadDataFromBG(0, 3);
+        for (int i = 0; i < 13; i++) {
+        	jtc.loadDataFromBG(i, 10);
+        }
         jtc.printLoadedData();
         jtc.saveArenateamToCSV();
         jtc.saveCharacterToCSV();

@@ -1,0 +1,15 @@
+IMPORT FROM "arenateam.csv" OF DEL INSERT INTO arenateam
+(realm,
+  ranking,
+  rating,
+  teamsize,
+  name,
+  gamesPlayed,
+  gamesWon,
+  gamesLost,
+  sessionGamesPlayed,
+  sessionGamesWon,
+  sessionGamesLost,
+  lastSessionRanking,
+  side,
+  currentWeekRanking);
