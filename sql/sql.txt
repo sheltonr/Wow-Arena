@@ -1,0 +1,12 @@
+select all by rating across bgs (top rated players in game)
+select top class by rating across <server> or <bg>
+select <comp> (3 classes) and who rank/rating across server/bg/all
+select top 10 teams by rating across server and bg
+(all previous queries, differentitate by side)
+% players by race, class and comp
+
+
+
+On mainpage --
+
+Top Teams	Top comps	Top Class (by representation) Top race
