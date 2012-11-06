@@ -1,3 +1,5 @@
+--TO SORT BY FACTION, ADD a.side = 'Horde' 'Alliance'
+
 --SEARCH BY BATTLEGROUP
 --RETURNS TEAM NAME, TEAM RATING, TEAM RANKING
 --'whirlwind' should be changed to any bg names
@@ -37,3 +39,7 @@ GROUP BY a.name, a.rating, a.ranking
 ORDER BY a.ranking ASC
 LIMIT 10
 ;
+
+
+--TO DO: TOP COMP by representation
+--
