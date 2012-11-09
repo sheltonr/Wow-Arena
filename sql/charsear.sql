@@ -15,9 +15,9 @@ WHERE c.class = 'Mage'
 ;
 
 --case sensitive in search ok this totally doesn't work
-SELECT count(c1.race), count(c2.race)
+SELECT DECIMAL(DECIMAL(count(human))/DECIMAL(count(c2.race)))
 FROM characters c1, characters c2, arenateam a
-WHERE c1.race = 'Human' and c1.arenaname = a.name
+WHERE c1.race = 'Human' as human and c1.arenaname = a.name
 ;
 
 --possible to have a search showing what class plays with other classes?  ex. shadowpriests play with a mage 90% of the time
