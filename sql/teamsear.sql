@@ -34,7 +34,7 @@ LIMIT 10
 --selects team, rating, ranking by battlegroup
 SELECT a.name, a.rating, a.ranking
 FROM arenateam a, characters c
-WHERE c.battlegroup = 'Whirlwind' AND a.name = c.arenaname AND a.rating > 1600
+WHERE c.battlegroup = 'Whirlwind' AND a.name = c.arenaname AND a.rating > 1600 AND a.rating < 3000
 GROUP BY a.name, a.rating, a.ranking
 ORDER BY a.ranking ASC
 LIMIT 10
@@ -43,3 +43,10 @@ LIMIT 10
 
 --TO DO: TOP COMP by representation
 --
+
+--HORDE VS ALLIANCE TEAM SEARCH
+SELECT DECIMAL(DECIMAL(count(horde))/DECIMAL(count(alliance)))
+FROM arena a
+WHERE side = 'Alliance' as alliance AND side = 'Horde' as horde
+;
+
